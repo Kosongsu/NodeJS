@@ -38,4 +38,24 @@ app.post('/register', (req, res) => {
   })
 })
 
+app.post('/login', (req, res) => {
+  
+  //요청된 이메일을 데이터베이스에서 찾기
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if(!user) {
+      return res.json({
+        loginSuccess: false,
+        message: "제공된 이메일에 해당하는 유저가 없습니다."
+      })
+    }
+  // 요청된 이메일이 데이터베이스에 있으면 비밀번호가 맞는 비밀번호 인지 확인
+    user.comparePassword(req.body.password, (err, isMatch) => {
+      
+    })
+  
+  })
+
+  // 비밀번호 맞다면 토큰을 생성
+})
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
