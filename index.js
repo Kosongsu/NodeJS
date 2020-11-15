@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
   
   //요청된 이메일을 데이터베이스에서 찾기
   User.findOne({ email: req.body.email }, (err, user) => {
-    if(!user) {
+    if(!use) {
       return res.json({
         loginSuccess: false,
         message: "제공된 이메일에 해당하는 유저가 없습니다."
